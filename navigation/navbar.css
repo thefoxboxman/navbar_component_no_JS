@@ -88,7 +88,10 @@ nav{
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 	width: 100%;
-	display: none;
+	/* add transition to menu openning and closing*/
+	transform: scale(1, 0);
+	transform-origin: top;
+	transition: transform 400ms ease-in-out;
 }
 
 nav ul{
@@ -107,11 +110,75 @@ nav a {
 	text-decoration: none;
 	font-size: 1.2rem;
 	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
 }
 nav a:hover{
-color: #000;
+color: rgb(138, 118, 118);
 }
 /* toggle nav off and on */
+/* add transition to menu openning and closing*/
 .nav-toggle:checked ~ nav{
-display: block;
+transform: scale(1, 1)
 }
+
+.nav-toggle:checked ~ nav a{
+	opacity: 1;
+	transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 800px){
+	.nav-toggle-label{
+		display: none;
+	}
+	header{
+		display: grid;
+		grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+	}
+
+.logo{
+	grid-column: 2 / 3 ;
+}
+
+nav{
+	all: unset; /* to remove all previous settings */
+	grid-column: 3/4;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+nav a{
+	opacity: 1;
+	position: relative;
+}
+
+nav a::before{
+	content: '';
+	display: block;
+	height: 5px;
+	background: white;
+	position: absolute;
+	top: -0.75rem;
+	left: 0;
+	right: 0;
+	transform: scale(0,1);
+	transition: transform ease-in-out 250ms;
+
+}
+
+nav a:hover::before{
+	transform: scale(1,1);
+	transform-origin: left;
+}
+nav ul{
+	display: flex;
+	justify-content: flex-end;
+
+}
+
+nav li{
+	margin-left: 2rem;
+	margin-bottom: 0;
+}
+} /* end of media query */
