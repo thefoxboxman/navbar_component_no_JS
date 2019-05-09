@@ -1,3 +1,117 @@
+:root{
+	--background-color: rgba(46, 13, 67, 0.8);
+}
+
+*, *::before. *::after{
+	box-sizing: border-box;
+}
+
 body{
-	background-color: blanchedalmond;
+	margin: 0;
+	background: #222;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 400;
+}
+
+.content{
+	height: 220vh;
+	background-image: url(//source.unsplash.com/weekly?water/1600x900);
+	background-color: #333;
+	background-blend-mode: multiply;
+	background-size: cover;
+	display: grid;
+	place-items: center;
+}
+/* Navigation Styles Start Here */
+
+header{
+	background-color:  rgba(0, 0, 0, 0.5);;	
+	text-align: center;
+	position: fixed;
+	z-index: 999;
+	width:100%;
+}
+
+.logo {
+	color: #ffffff;
+	/* style as neccessary*/
+}
+/* no need to display checkbox. It is still there, we just can't see it. We will create hamburger icon in span element inside lable*/
+.nav-toggle{
+	display: none;
+}
+
+.nav-toggle-label{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 1rem;
+	
+	color: #ffffff;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+/* create hamburger icon middle line*/
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+	display: block;
+	background: white;
+	height: 2px;
+	width: 2rem;
+	border-radius: 2px;
+	position: relative;
+}
+/* create hamburger icon top and bottom lines. To begin with all three lines are overlapping or stacked*/
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+content:''; /* must have empty content */
+position: absolute;
+}
+/* Move bottom line down*/
+.nav-toggle-label span::before{
+	bottom: 7px;
+}
+/* Move bottom line up*/
+.nav-toggle-label span::after{
+	top: 7px;
+}
+
+.nav-toggle-label span::-webkit-textfield-decoration-container{
+	top: 7px;
+}
+nav{
+	position: absolute;
+	text-align: left;
+	top: 100%; /* this aligns the top of the nav dropdown with the bottom of the header element */
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	display: none;
+}
+
+nav ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav li{
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+}
+nav a:hover{
+color: #000;
+}
+/* toggle nav off and on */
+.nav-toggle:checked ~ nav{
+display: block;
 }
